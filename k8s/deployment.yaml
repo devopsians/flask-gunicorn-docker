@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flaskapi-deployment
+  namespace: flaskapi-ns
   labels:
     app: flaskapi
 spec:
@@ -20,17 +21,3 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
-# service type loadbalancer       
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: flaskapi-svc
-spec:
-  selector:
-    app: flaskapi
-  ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 5000
-  type: LoadBalancer

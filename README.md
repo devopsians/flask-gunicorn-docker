@@ -44,7 +44,7 @@ kubectl get deployments
 
 #eksctl delete cluster --name flaskapi --region ap-south-1
 
-https://www.coachdevops.com/2020/12/deploy-python-app-docker-container-into.html
+### Referance link for this project https://www.coachdevops.com/2020/12/deploy-python-app-docker-container-into.html
 
 
 
