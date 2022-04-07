@@ -1,0 +1,56 @@
+
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: cluster-1
+  region: eu-west-1
+
+vpc:
+  cidr: 10.10.0.0/16
+  autoAllocateIPv6: true
+ 
+nodeGroups:
+  - name: ng1
+    instanceType: t3.medium
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 6
+    availabilityZones: ["eu-west-1b"]
+    ami: ami-08716b70cac884aaa
+    amiFamily: AmazonLinux2
+    tags:
+      keycas1: "i8s.io/cluster-autoscaler/enabled"
+      keycas2: "k8s.io/cluster-autoscaler/cluster-1"
+      auto-delete: "false"
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+        albIngress: true
+        imageBuilder: true
+    ssh:
+      publicKeyName: mykey
+
+
+
+  - name: ng2
+    instanceType: t3.medium
+    desiredCapacity: 1
+    availabilityZones: ["eu-west-1c"]
+    minSize: 1
+    maxSize: 6
+    ami: ami-08716b70cac884aaa
+    amiFamily: AmazonLinux2
+    tags:
+      keycas1: "k8s.io/cluster-autoscaler/enabled"
+      keycas2: "k8s.io/cluster-autoscaler/cluster-1"
+      auto-delete: "false"
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+        albIngress: true
+        imageBuilder: true
+    ssh:
+      publicKeyName: mykey
+
+availabilityZones: ["eu-west-1b", "eu-west-1c"]
