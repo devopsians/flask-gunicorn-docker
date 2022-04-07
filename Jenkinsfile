@@ -7,7 +7,7 @@ pipeline {
         registry = "djaybob/flaskapi"
         //- update your credentials ID after creating credentials for connecting to Docker Hub
         registryCredential = 'dockerhub'
-        dockerImage = 'latest'
+        dockerImage = ''
     }
     stages {
 
@@ -38,7 +38,14 @@ pipeline {
    
     stage ('K8S Deploy') {
         steps {
-            sh 'kubectl apply -f /home/jenkins/workspace/k8s-deployment.yaml'
+            script {
+                kubernetesDeploy(
+                    configs: 'k8s-deployment.yaml',
+                    kubeconfigId: 'K8S',
+                    enableConfigSubstitution: true
+                    )           
+               
+            }
         }
     }
   
