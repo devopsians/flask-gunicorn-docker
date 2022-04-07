@@ -36,7 +36,9 @@ kubectl get nodes
 
 kubectl get ns
 
-kubectl create deployment flaskapi --image=755345766251.dkr.ecr.ap-south-1.amazonaws.com/flaskapi-gunicorn:latest
+#kubectl create deployment flaskapi --image=755345766251.dkr.ecr.ap-south-1.amazonaws.com/flaskapi-gunicorn:latest
+
+kubectl apply -f /home/ubuntu/projects-git/flask-gunicorn-docker/k8s-deployment.yaml
 
 kubectl get deployments
 
