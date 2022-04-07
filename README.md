@@ -24,3 +24,47 @@ docker tag flaskapi-gunicorn:latest 755345766251.dkr.ecr.ap-south-1.amazonaws.co
 Run the following command to push this image to your newly created AWS repository:
 
 docker push 755345766251.dkr.ecr.ap-south-1.amazonaws.com/flaskapi-gunicorn:latest
+
+
+###### EKS cluster #######
+
+eksctl create cluster --name flaskapi --region ap-south-1 --nodegroup-name my-nodes --node-type t2.micro --managed --nodes 2 
+
+eksctl get cluster --name flaskapi --region ap-south-1
+
+kubectl get nodes
+
+kubectl get ns
+
+kubectl create deployment flaskapi --image=755345766251.dkr.ecr.ap-south-1.amazonaws.com/flaskapi-gunicorn:latest
+
+kubectl get deployments
+
+#eksctl delete cluster --name flaskapi --region ap-south-1
+
+https://www.coachdevops.com/2020/12/deploy-python-app-docker-container-into.html
+
+
+
+
+##### kubectl client version v1.20.8 installation on Ubuntu #####
+
+curl -LO https://dl.k8s.io/release/v1.20.8/bin/linux/amd64/kubectl
+
+curl -LO "https://dl.k8s.io/release/v1.20.8/bin/linux/amd64/kubectl.sha256"
+
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+chmod +x kubectl
+mkdir -p ~/.local/bin
+mv ./kubectl ~/.local/bin/kubectl
+
+kubectl version --client
+
+#####
+
+
+
+
+
+
