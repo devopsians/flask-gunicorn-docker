@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flaskapi-deployment
+  labels:
+    app: flaskapi
 spec:
   replicas: 3
   selector:
@@ -13,8 +15,8 @@ spec:
         app: flaskapi
     spec:
       containers:
-      - name: flaskapi-ctnr
-        image: djaybob/flaskapi
+      - name: flaskapi-container
+        image: djaybob/flaskapi:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
