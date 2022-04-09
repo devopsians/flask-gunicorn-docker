@@ -38,9 +38,26 @@ kubectl get ns
 
 #kubectl create deployment flaskapi --image=755345766251.dkr.ecr.ap-south-1.amazonaws.com/flaskapi-gunicorn:latest
 
-kubectl apply -f /home/ubuntu/projects-git/flask-gunicorn-docker/k8s-deployment.yaml
+cd k8s
 
-kubectl get deployments
+# create
+kubectl apply -f deployment.yaml
+kubectl apply -f ingress.yaml
+kubectl apply -f namespace.yaml
+kubectl apply -f service.yaml
+
+# view
+kubectl get events
+kubectl get pods
+kubectl get replicaset
+kubectl get deployment
+kubectl get service
+
+## delete 
+kubectl delete -f deployment.yaml
+kubectl delete -f ingress.yaml
+kubectl delete -f namespace.yaml
+kubectl delete -f service.yaml
 
 #eksctl delete cluster --name flaskapi --region ap-south-1
 
